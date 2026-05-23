@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Glob|Grep|Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "codeguide hook-check"
+          }
+        ]
+      }
+    ]
+  }
+}
