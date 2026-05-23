@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import { installCommand } from "../commands/install.js";
+
 const program = new Command();
 
 program
@@ -12,7 +14,7 @@ program
   .command("install")
   .description("Set up CodeGuide in this project (writes CLAUDE.md, AGENTS.md, hooks")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => installCommand(opts.dir));
 
 program
   .command("init")
