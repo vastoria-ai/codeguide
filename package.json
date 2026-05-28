@@ -14,8 +14,13 @@
     "format:check": "prettier --check .",
     "format:write": "prettier --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "postinstall": "node scripts/postinstall.js"
   },
+  "files": [
+    "dist",
+    "scripts/postinstall.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vastoria-ai/codeguide.git"

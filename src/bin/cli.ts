@@ -3,6 +3,7 @@ import { Command } from "commander";
 
 import { installCommand } from "../commands/install.js";
 import { initiCommand } from "../commands/init.js";
+import { missionCommand } from "../commands/mission.js";
 
 const program = new Command();
 
@@ -33,7 +34,7 @@ program
   .command("mission <topic>")
   .description("Start an interactive learning mission on a topic")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((topic, opts) => missionCommand(topic, opts.dir));
 
 program
   .command("tour")
