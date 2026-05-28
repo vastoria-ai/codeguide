@@ -5,6 +5,10 @@ import { installCommand } from "../commands/install.js";
 import { initiCommand } from "../commands/init.js";
 import { missionCommand } from "../commands/mission.js";
 import { tourCommand } from "../commands/tour.js";
+import { syncCommand } from "../commands/sync.js";
+import { askCommand } from "../commands/ask.js";
+import { doctorCommand } from "../commands/doctor.js";
+import { hookCheckCommand } from "../commands/hookCheck.js";
 
 const program = new Command();
 
@@ -29,7 +33,7 @@ program
   .command("sync")
   .description("Incrementally re-index changed files")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => syncCommand(opts.dir));
 
 program
   .command("mission <topic>")
@@ -47,18 +51,18 @@ program
   .command("ask <questions>")
   .description("Ask as question about this codebase")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((question, opts) => askCommand(question, opts.dir));
 
 program
   .command("hook-check")
   .description("PreToolUse hook - notifies Claude if an index exists (internal use)")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => hookCheckCommand(opts.dir));
 
 program
   .command("doctor")
   .description("Check that CodeGuide is correctly installed in this project")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => doctorCommand(opts.dir));
 
 program.parse();
