@@ -19,6 +19,8 @@
   },
   "files": [
     "dist",
+    "README.md",
+    "LICENSE",
     "scripts/postinstall.js"
   ],
   "repository": {
