@@ -4,6 +4,7 @@ import { Command } from "commander";
 import { installCommand } from "../commands/install.js";
 import { initiCommand } from "../commands/init.js";
 import { missionCommand } from "../commands/mission.js";
+import { tourCommand } from "../commands/tour.js";
 
 const program = new Command();
 
@@ -40,7 +41,7 @@ program
   .command("tour")
   .description("Get a guided orientation of this codebase")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => tourCommand(opts.dir));
 
 program
   .command("ask <questions>")
