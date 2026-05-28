@@ -12,13 +12,7 @@ import {
   readReadmeSnippet,
   IndexData,
 } from "../indexer/markdown.js";
-import {
-  ensureDir,
-  writeJsonFile,
-  appendToGitignore,
-  getOutDir,
-  getMissionsDir,
-} from "../utils/fs.js";
+import { ensureDir, writeJsonFile, getOutDir, getMissionsDir } from "../utils/fs.js";
 
 export async function initiCommand(dir: string = process.cwd()): Promise<void> {
   console.log(chalk.bold("\n CodeGuide - init\n"));
@@ -88,9 +82,6 @@ export async function initiCommand(dir: string = process.cwd()): Promise<void> {
       })),
     });
 
-    // 6. Update .gitignore
-    appendToGitignore(dir, "codeguide-out/");
-
     spinner.succeed(`Indexed ${files.length} files across ${data.moduleCount} modules`);
 
     // print summary
@@ -109,6 +100,11 @@ export async function initiCommand(dir: string = process.cwd()): Promise<void> {
     console.log(chalk.dim(`    STRUCTURE.md   — dependency graph`));
     console.log(chalk.dim(`    GRAPH_REPORT.md — quick-read summary`));
     console.log(chalk.dim(`    missions/       — generated missions saved here`));
+    console.log("");
+    console.log(chalk.dim("  Tip: commit codeguide-out/ so teammates and CI skip regeneration:"));
+    console.log(
+      chalk.dim('    git add codeguide-out/ && git commit -m "chore: add codeguide index"')
+    );
     console.log("");
     console.log(chalk.bold("  Open a Claude Code or Codex session and try:"));
     console.log(chalk.cyan("    /codeguide tour"));

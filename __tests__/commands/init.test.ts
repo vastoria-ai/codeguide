@@ -164,26 +164,12 @@ describe("initiCommand", () => {
 
   // ─── .gitignore ───────────────────────────────────────────────────────────────
 
-  it("appends codeguide-out/ to an existing .gitignore", async () => {
+  it("does not modify .gitignore — codeguide-out/ should be committed to SCM", async () => {
     makeProject(tmpDir);
-    fs.writeFileSync(path.join(tmpDir, ".gitignore"), "node_modules/\n");
+    const original = "node_modules/\n";
+    fs.writeFileSync(path.join(tmpDir, ".gitignore"), original);
     await initiCommand(tmpDir);
-    const content = fs.readFileSync(path.join(tmpDir, ".gitignore"), "utf-8");
-    expect(content).toContain("codeguide-out/");
-  });
-
-  it("does not re-add codeguide-out/ to .gitignore when already present", async () => {
-    makeProject(tmpDir);
-    fs.writeFileSync(path.join(tmpDir, ".gitignore"), "node_modules/\ncodeguide-out/\n");
-    await initiCommand(tmpDir);
-    const content = fs.readFileSync(path.join(tmpDir, ".gitignore"), "utf-8");
-    expect(content.split("codeguide-out/").length - 1).toBe(1);
-  });
-
-  it("does not create .gitignore when none exists", async () => {
-    makeProject(tmpDir);
-    await initiCommand(tmpDir);
-    expect(fs.existsSync(path.join(tmpDir, ".gitignore"))).toBe(false);
+    expect(fs.readFileSync(path.join(tmpDir, ".gitignore"), "utf-8")).toBe(original);
   });
 
   // ─── Console output ───────────────────────────────────────────────────────────
