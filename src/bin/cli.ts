@@ -2,6 +2,7 @@
 import { Command } from "commander";
 
 import { installCommand } from "../commands/install.js";
+import { initiCommand } from "../commands/init.js";
 
 const program = new Command();
 
@@ -20,7 +21,7 @@ program
   .command("init")
   .description("Index this repository and write codeguide-out/")
   .option("-d, --dir <path>", "project directory", process.cwd())
-  .action((opts) => console.log("not yet implemented"));
+  .action((opts) => initiCommand(opts.dir));
 
 program
   .command("sync")
