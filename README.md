@@ -35,7 +35,7 @@ The index is committed to your repo. Every engineer on your team gets the same c
 ## Install
 
 ```bash
-npm install -g codeguide
+npm install -g @vastoria-ai/codeguide
 ```
 
 The `postinstall` script automatically registers `/codeguide` as a global slash command in Claude Code by writing `~/.claude/commands/codeguide.md`. No manual setup required.

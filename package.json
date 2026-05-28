@@ -1,5 +1,5 @@
 {
-  "name": "codeguide",
+  "name": "@vastoria-ai/codeguide",
   "version": "0.1.0",
   "description": "Codebase learning commands for Claude Code and OpenAI Codex sessions",
   "bin": {
